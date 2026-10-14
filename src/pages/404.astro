@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Página não encontrada | RP7 Tech"
+	description="A página que você procura não existe ou foi movida."
+>
+	<section class="diagonal-stripes flex min-h-[80vh] items-center bg-dark pt-20 text-white">
+		<div class="relative mx-auto max-w-7xl px-4 py-24 text-center sm:px-6 lg:px-8">
+			<img
+				src="/brand/svg/rp7-simbolo.svg"
+				alt=""
+				aria-hidden="true"
+				class="mx-auto h-20 w-auto opacity-60"
+				width="662"
+				height="500"
+			/>
+			<p class="eyebrow brand-gradient-text mt-10">Erro 404</p>
+			<h1 class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+				Página não encontrada
+			</h1>
+			<p class="mx-auto mt-4 max-w-md text-white/70">
+				O endereço que você acessou não existe ou foi movido.
+			</p>
+			<a
+				href="/"
+				class="brand-gradient mt-8 inline-block rounded-xl px-8 py-4 text-base font-semibold text-white shadow-xl shadow-primary/30 transition-transform hover:scale-[1.03]"
+			>
+				Voltar para a home
+			</a>
+		</div>
+	</section>
+</BaseLayout>

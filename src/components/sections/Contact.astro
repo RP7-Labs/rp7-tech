@@ -1,0 +1,61 @@
+---
+import ContactForm from '../ContactForm';
+import { site, whatsappLink } from '../../config/site';
+import { Mail, MessageCircle } from 'lucide-astro';
+---
+
+<section id="contato" class="bg-white py-20 sm:py-28">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div class="grid gap-12 lg:grid-cols-5 lg:gap-16">
+			<div class="lg:col-span-2">
+				<p class="eyebrow brand-gradient-text reveal">Contato</p>
+				<h2 class="reveal mt-4 text-3xl font-bold tracking-tight text-dark sm:text-4xl">
+					Conte o que sua empresa precisa
+				</h2>
+				<p class="reveal mt-4 leading-relaxed text-slate-text">
+					Responda em poucas linhas e a gente retorna com um caminho — sem
+					compromisso e sem enrolação.
+				</p>
+
+				<ul class="mt-8 space-y-4">
+					<li>
+						<a
+							href={`mailto:${site.email}`}
+							class="reveal flex items-center gap-4 rounded-2xl border border-light p-4 transition-colors hover:border-primary/40"
+						>
+							<span class="brand-gradient inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white">
+								<Mail class="h-5 w-5" aria-hidden="true" />
+							</span>
+							<span>
+								<span class="block text-sm font-medium text-dark">E-mail</span>
+								<span class="text-sm text-slate-text">{site.email}</span>
+							</span>
+						</a>
+					</li>
+					<li>
+						<a
+							href={whatsappLink()}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="reveal flex items-center gap-4 rounded-2xl border border-light p-4 transition-colors hover:border-primary/40"
+						>
+							<span class="brand-gradient inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white">
+								<MessageCircle class="h-5 w-5" aria-hidden="true" />
+							</span>
+							<span>
+								<span class="block text-sm font-medium text-dark">WhatsApp</span>
+								<span class="text-sm text-slate-text">{site.phone}</span>
+							</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="lg:col-span-3">
+				<div class="reveal rounded-2xl border border-light bg-white p-6 shadow-lg shadow-dark/5 sm:p-8">
+					<ContactForm client:visible origem="site-home" />
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

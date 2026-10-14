@@ -1,0 +1,87 @@
+---
+import { Blocks, Code2, Smartphone, Workflow } from 'lucide-astro';
+
+const services = [
+	{
+		Icon: Code2,
+		title: 'Software personalizado',
+		description:
+			'Sistemas desenvolvidos do zero para a forma como a sua empresa trabalha.',
+		examples: [
+			'Plataformas web sob medida',
+			'Automação de processos internos',
+			'Ferramentas exclusivas do seu negócio',
+		],
+	},
+	{
+		Icon: Blocks,
+		title: 'Sistemas integrados',
+		description:
+			'ERPs, sistemas de gestão e painéis internos que centralizam sua operação.',
+		examples: [
+			'Gestão empresarial e financeira',
+			'Painéis e dashboards internos',
+			'Controle de estoque e vendas',
+		],
+	},
+	{
+		Icon: Workflow,
+		title: 'Integrações entre sistemas',
+		description:
+			'Conectamos suas ferramentas para que os dados fluam sem trabalho manual.',
+		examples: [
+			'APIs e integração com ERPs',
+			'Gateways de pagamento e marketplaces',
+			'Automações e sincronização de dados',
+		],
+	},
+	{
+		Icon: Smartphone,
+		title: 'Aplicativos mobile',
+		description:
+			'Apps para iOS e Android que colocam o seu negócio na mão do cliente.',
+		examples: [
+			'Apps para clientes e equipes',
+			'Publicação na App Store e Google Play',
+			'Integração com seus sistemas',
+		],
+	},
+];
+---
+
+<section id="servicos" class="bg-white py-20 sm:py-28">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div class="max-w-2xl">
+			<p class="eyebrow brand-gradient-text reveal">O que fazemos</p>
+			<h2 class="reveal mt-4 text-3xl font-bold tracking-tight text-dark sm:text-4xl">
+				Tecnologia sob medida, do sistema ao app
+			</h2>
+			<p class="reveal mt-4 text-lg leading-relaxed text-slate-text">
+				Do primeiro diagnóstico à entrega final, construímos soluções digitais
+				pensadas para gerar resultado — não só para funcionar.
+			</p>
+		</div>
+
+		<div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+			{
+				services.map(({ Icon, title, description, examples }) => (
+					<article class="reveal group flex flex-col rounded-2xl border border-light bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10">
+						<div class="brand-gradient inline-flex h-12 w-12 items-center justify-center rounded-xl text-white shadow-md shadow-primary/25">
+							<Icon class="h-6 w-6" aria-hidden="true" />
+						</div>
+						<h3 class="mt-5 text-lg font-semibold text-dark">{title}</h3>
+						<p class="mt-2 text-sm leading-relaxed text-slate-text">{description}</p>
+						<ul class="mt-4 space-y-2 border-t border-light pt-4">
+							{examples.map((ex) => (
+								<li class="flex items-start gap-2 text-sm text-slate-text">
+									<span class="brand-gradient mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" aria-hidden="true" />
+									{ex}
+								</li>
+							))}
+						</ul>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>

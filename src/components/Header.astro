@@ -1,0 +1,132 @@
+---
+const links = [
+	{ href: '/#servicos', label: 'Serviços' },
+	{ href: '/#solucoes', label: 'Soluções' },
+	{ href: '/#processo', label: 'Como trabalhamos' },
+	{ href: '/#contato', label: 'Contato' },
+];
+---
+
+<header
+	id="site-header"
+	class="fixed inset-x-0 top-0 z-50 transition-colors duration-300"
+>
+	<div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+		<a href="/" class="flex items-center" aria-label="RP7 Tech — página inicial">
+			<img
+				src="/brand/svg/rp7-logo-negativa-transparente.svg"
+				alt="RP7 Tech"
+				class="header-logo h-9 w-auto transition-[filter]"
+				width="1832"
+				height="718"
+			/>
+		</a>
+
+		<nav class="hidden items-center gap-8 lg:flex" aria-label="Navegação principal">
+			{
+				links.map((link) => (
+					<a
+						href={link.href}
+						class="nav-link text-sm font-medium text-white/80 transition-colors hover:text-white"
+					>
+						{link.label}
+					</a>
+				))
+			}
+			<a
+				href="/#contato"
+				class="brand-gradient rounded-xl px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-transform hover:scale-[1.03]"
+			>
+				Fale com a gente
+			</a>
+		</nav>
+
+		<button
+			id="menu-toggle"
+			type="button"
+			class="nav-icon inline-flex items-center justify-center rounded-lg p-2 text-white lg:hidden"
+			aria-expanded="false"
+			aria-controls="mobile-menu"
+			aria-label="Abrir menu"
+		>
+			<svg class="h-6 w-6 icon-open" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+			</svg>
+			<svg class="hidden h-6 w-6 icon-close" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+			</svg>
+		</button>
+	</div>
+
+	<div
+		id="mobile-menu"
+		class="hidden border-t border-white/10 bg-dark/95 backdrop-blur lg:hidden"
+	>
+		<nav class="space-y-1 px-4 py-4" aria-label="Menu mobile">
+			{
+				links.map((link) => (
+					<a
+						href={link.href}
+						class="mobile-link block rounded-lg px-3 py-2.5 text-base font-medium text-white/85 hover:bg-white/10"
+					>
+						{link.label}
+					</a>
+				))
+			}
+			<a
+				href="/#contato"
+				class="mobile-link brand-gradient mt-2 block rounded-xl px-4 py-3 text-center text-sm font-semibold text-white"
+			>
+				Fale com a gente
+			</a>
+		</nav>
+	</div>
+</header>
+
+<script>
+	const header = document.getElementById('site-header')!;
+	const logo = header.querySelector('.header-logo') as HTMLElement;
+	const navLinks = header.querySelectorAll('.nav-link');
+	const icon = header.querySelector('.nav-icon');
+	const toggle = document.getElementById('menu-toggle')!;
+	const menu = document.getElementById('mobile-menu')!;
+	const iconOpen = toggle.querySelector('.icon-open')!;
+	const iconClose = toggle.querySelector('.icon-close')!;
+
+	function onScroll() {
+		const scrolled = window.scrollY > 40 && menu.classList.contains('hidden');
+		header.classList.toggle('bg-white/95', scrolled);
+		header.classList.toggle('shadow-lg', scrolled);
+		header.classList.toggle('shadow-black/5', scrolled);
+		header.classList.toggle('backdrop-blur', scrolled);
+		logo.style.filter = scrolled ? 'invert(1) brightness(0.25)' : '';
+		navLinks.forEach((l) => {
+			l.classList.toggle('text-white/80', !scrolled);
+			l.classList.toggle('hover:text-white', !scrolled);
+			l.classList.toggle('text-slate-text', scrolled);
+			l.classList.toggle('hover:text-primary', scrolled);
+		});
+		icon?.classList.toggle('text-white', !scrolled);
+		icon?.classList.toggle('text-dark', scrolled);
+	}
+
+	toggle.addEventListener('click', () => {
+		const open = menu.classList.toggle('hidden');
+		iconOpen.classList.toggle('hidden', !open);
+		iconClose.classList.toggle('hidden', open);
+		toggle.setAttribute('aria-expanded', String(!open));
+		toggle.setAttribute('aria-label', open ? 'Abrir menu' : 'Fechar menu');
+	});
+
+	menu.querySelectorAll('.mobile-link').forEach((l) =>
+		l.addEventListener('click', () => {
+			menu.classList.add('hidden');
+			iconOpen.classList.remove('hidden');
+			iconClose.classList.add('hidden');
+			toggle.setAttribute('aria-expanded', 'false');
+		}),
+	);
+
+	window.addEventListener('scroll', onScroll, { passive: true });
+	onScroll();
+</script>

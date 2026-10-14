@@ -1,0 +1,202 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactForm from '../../components/ContactForm';
+import {
+	BedDouble,
+	CalendarCheck,
+	ChartColumn,
+	LogIn,
+	Map,
+	RefreshCw,
+	Smartphone,
+	Wallet,
+} from 'lucide-astro';
+import { site } from '../../config/site';
+
+const features = [
+	{
+		Icon: CalendarCheck,
+		title: 'Reservas centralizadas',
+		description:
+			'Todas as reservas em um só lugar — diretas, por telefone ou vindas de OTAs.',
+	},
+	{
+		Icon: Map,
+		title: 'Mapa de ocupação',
+		description:
+			'Visão em tempo real de quartos ocupados, livres, em limpeza ou bloqueados.',
+	},
+	{
+		Icon: LogIn,
+		title: 'Check-in e check-out',
+		description:
+			'Fluxo rápido de entrada e saída, com histórico completo de cada hóspede.',
+	},
+	{
+		Icon: RefreshCw,
+		title: 'Integração com OTAs',
+		description:
+			'Sincronização com channel manager e portais como Booking e Expedia.',
+	},
+	{
+		Icon: Wallet,
+		title: 'Financeiro',
+		description:
+			'Contas a receber, consumo na hospedagem e faturamento por período.',
+	},
+	{
+		Icon: ChartColumn,
+		title: 'Relatórios gerenciais',
+		description:
+			'Ocupação, receita, ticket médio e origem das reservas em dashboards claros.',
+	},
+	{
+		Icon: Smartphone,
+		title: 'Painel do hóspede',
+		description:
+			'Experiência digital para o hóspede: informações da estadia, pedidos e contato.',
+	},
+];
+
+const audience = [
+	'Hotéis e hotéis boutique',
+	'Pousadas e chalés',
+	'Hostels e colivings',
+	'Redes pequenas com múltiplas unidades',
+];
+
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'SoftwareApplication',
+	name: 'RP7 Hotelaria',
+	applicationCategory: 'BusinessApplication',
+	operatingSystem: 'Web',
+	description:
+		'Sistema de gestão para hotéis, pousadas e hospedagens: reservas, mapa de ocupação, integração com OTAs, financeiro e painel do hóspede.',
+	provider: {
+		'@type': 'Organization',
+		name: site.name,
+		url: site.url,
+	},
+};
+---
+
+<BaseLayout
+	title="RP7 Hotelaria — sistema de gestão para hotéis e pousadas | RP7 Tech"
+	description="Reservas, mapa de ocupação, check-in/check-out, integração com OTAs, financeiro e painel do hóspede. O software de gestão da RP7 Tech para hotelaria."
+	jsonLd={jsonLd}
+>
+	<section class="diagonal-stripes relative bg-dark pb-20 pt-40 text-white sm:pt-48">
+		<div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="max-w-3xl">
+				<p class="eyebrow brand-gradient-text">Solução pronta</p>
+				<h1 class="mt-6 text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+					RP7 Hotelaria
+				</h1>
+				<p class="mt-6 text-lg leading-relaxed text-white/70 sm:text-xl">
+					O sistema de gestão que organiza sua hospedagem de ponta a ponta:
+					da reserva ao check-out, do financeiro à experiência do hóspede.
+				</p>
+				<div class="mt-8 flex flex-col gap-4 sm:flex-row">
+					<a
+						href="#demonstracao"
+						class="brand-gradient inline-flex items-center justify-center gap-2 rounded-xl px-8 py-4 text-base font-semibold text-white shadow-xl shadow-primary/30 transition-transform hover:scale-[1.03]"
+					>
+						Agendar demonstração
+					</a>
+					<a
+						href="/"
+						class="inline-flex items-center justify-center rounded-xl border border-white/20 px-8 py-4 text-base font-semibold text-white transition-colors hover:bg-white/5"
+					>
+						Voltar ao site
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="bg-white py-20 sm:py-24">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="max-w-2xl">
+				<h2 class="text-3xl font-bold tracking-tight text-dark sm:text-4xl">
+					Menos planilha, mais hospedagem
+				</h2>
+				<p class="mt-4 text-lg leading-relaxed text-slate-text">
+					Hospedagem boa nasce de operação organizada. O RP7 Hotelaria foi
+					desenhado para quem vive o dia a dia da recepção — e precisa que o
+					sistema acompanhe o ritmo.
+				</p>
+			</div>
+
+			<div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+				{
+					features.map(({ Icon, title, description }) => (
+						<article class="reveal rounded-2xl border border-light bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10">
+							<div class="brand-gradient inline-flex h-11 w-11 items-center justify-center rounded-xl text-white">
+								<Icon class="h-5 w-5" aria-hidden="true" />
+							</div>
+							<h3 class="mt-4 font-semibold text-dark">{title}</h3>
+							<p class="mt-2 text-sm leading-relaxed text-slate-text">{description}</p>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class="bg-light/40 py-20 sm:py-24">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="grid items-center gap-10 lg:grid-cols-2">
+				<div>
+					<h2 class="text-3xl font-bold tracking-tight text-dark sm:text-4xl">
+						Para quem é
+					</h2>
+					<p class="mt-4 leading-relaxed text-slate-text">
+						Feito para operações de hospedagem que precisam de controle sem
+						complexidade — do primeiro quarto à operação completa.
+					</p>
+					<ul class="mt-6 space-y-3">
+						{
+							audience.map((item) => (
+								<li class="flex items-center gap-3 text-dark">
+									<span class="brand-gradient h-2 w-2 shrink-0 rounded-full" aria-hidden="true" />
+									{item}
+								</li>
+							))
+						}
+					</ul>
+				</div>
+				<div class="diagonal-stripes flex items-center justify-center rounded-3xl bg-dark p-10 sm:p-14">
+					<BedDouble class="h-24 w-24 text-secondary" aria-hidden="true" />
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="demonstracao" class="bg-white py-20 sm:py-24">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="grid gap-12 lg:grid-cols-5">
+				<div class="lg:col-span-2">
+					<p class="eyebrow brand-gradient-text">Demonstração</p>
+					<h2 class="mt-4 text-3xl font-bold tracking-tight text-dark">
+						Agende uma demonstração
+					</h2>
+					<p class="mt-4 leading-relaxed text-slate-text">
+						Mostramos o sistema funcionando e conversamos sobre a sua
+						operação. Sem compromisso.
+					</p>
+				</div>
+				<div class="lg:col-span-3">
+					<div class="rounded-2xl border border-light bg-white p-6 shadow-lg shadow-dark/5 sm:p-8">
+						<ContactForm
+							client:visible
+							origem="solucoes-hotelaria"
+							defaultInterest="hotelaria"
+							submitLabel="Agendar demonstração"
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

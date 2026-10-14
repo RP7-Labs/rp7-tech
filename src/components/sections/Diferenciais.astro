@@ -1,0 +1,55 @@
+---
+import { Headset, Rocket, Target, Wrench } from 'lucide-astro';
+
+const items = [
+	{
+		Icon: Wrench,
+		title: 'Sob medida de verdade',
+		description:
+			'Nada de adaptar seu processo a um software pronto. Construímos a solução em volta do seu negócio.',
+	},
+	{
+		Icon: Rocket,
+		title: 'Tecnologia moderna',
+		description:
+			'Stack atual e consolidada — sistemas rápidos, seguros e fáceis de evoluir.',
+	},
+	{
+		Icon: Target,
+		title: 'Foco em resultado',
+		description:
+			'Cada funcionalidade existe para resolver uma dor real: economizar tempo, reduzir erro ou aumentar receita.',
+	},
+	{
+		Icon: Headset,
+		title: 'Suporte próximo',
+		description:
+			'Você fala direto com quem desenvolve. Sem fila de ticket, sem intermediário.',
+	},
+];
+---
+
+<section id="diferenciais" class="bg-light/40 py-20 sm:py-28">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div class="max-w-2xl">
+			<p class="eyebrow brand-gradient-text reveal">Diferenciais</p>
+			<h2 class="reveal mt-4 text-3xl font-bold tracking-tight text-dark sm:text-4xl">
+				Por que a RP7 Tech
+			</h2>
+		</div>
+
+		<div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+			{
+				items.map(({ Icon, title, description }) => (
+					<article class="reveal rounded-2xl bg-white p-6 shadow-sm">
+						<div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-dark text-secondary">
+							<Icon class="h-5 w-5" aria-hidden="true" />
+						</div>
+						<h3 class="mt-4 font-semibold text-dark">{title}</h3>
+						<p class="mt-2 text-sm leading-relaxed text-slate-text">{description}</p>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>

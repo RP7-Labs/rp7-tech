@@ -1,0 +1,25 @@
+---
+const techs = [
+	'Node.js',
+	'React',
+	'React Native',
+	'TypeScript',
+	'PostgreSQL',
+	'MongoDB',
+	'Supabase',
+	'APIs REST',
+];
+---
+
+<section class="border-y border-light bg-white py-10" aria-label="Tecnologias">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<p class="eyebrow text-center text-slate-text/60">Tecnologias que usamos</p>
+		<ul class="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+			{
+				techs.map((tech) => (
+					<li class="text-lg font-semibold tracking-wide text-dark/35">{tech}</li>
+				))
+			}
+		</ul>
+	</div>
+</section>

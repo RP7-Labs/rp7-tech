@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactForm from '../../components/ContactForm';
+import {
+	Building2,
+	FileSignature,
+	Globe,
+	House,
+	Share2,
+	Users,
+} from 'lucide-astro';
+
+const features = [
+	{
+		Icon: House,
+		title: 'Cadastro de imóveis',
+		description:
+			'Fotos, características, valores e disponibilidade organizados em um só lugar.',
+	},
+	{
+		Icon: Globe,
+		title: 'Site integrado',
+		description:
+			'Os imóveis cadastrados aparecem automaticamente no site da sua imobiliária.',
+	},
+	{
+		Icon: Users,
+		title: 'CRM de leads',
+		description:
+			'Funil de atendimento para não perder nenhum interessado no caminho.',
+	},
+	{
+		Icon: FileSignature,
+		title: 'Contratos e locação',
+		description:
+			'Gestão de contratos de locação e venda, com documentos e prazos sob controle.',
+	},
+	{
+		Icon: Share2,
+		title: 'Portais imobiliários',
+		description:
+			'Publicação integrada nos principais portais para ampliar o alcance dos anúncios.',
+	},
+	{
+		Icon: Building2,
+		title: 'Gestão da operação',
+		description:
+			'Painel completo para acompanhar corretores, imóveis e negociações em andamento.',
+	},
+];
+---
+
+<BaseLayout
+	title="RP7 Imobiliárias — em breve, o sistema web para imobiliárias | RP7 Tech"
+	description="Cadastro de imóveis, site integrado, CRM de leads, contratos e publicação em portais. Entre na lista de espera do RP7 Imobiliárias."
+>
+	<section class="diagonal-stripes relative bg-dark pb-20 pt-40 text-white sm:pt-48">
+		<div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="max-w-3xl">
+				<div class="flex flex-wrap items-center gap-4">
+					<p class="eyebrow brand-gradient-text">Solução pronta</p>
+					<span class="rounded-full border border-secondary/40 bg-secondary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-secondary">
+						Em breve
+					</span>
+				</div>
+				<h1 class="mt-6 text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+					RP7 Imobiliárias
+				</h1>
+				<p class="mt-6 text-lg leading-relaxed text-white/70 sm:text-xl">
+					O sistema web que vai conectar imóveis, leads e contratos em uma
+					operação só — do anúncio à assinatura.
+				</p>
+				<div class="mt-8 flex flex-col gap-4 sm:flex-row">
+					<a
+						href="#lista-espera"
+						class="brand-gradient inline-flex items-center justify-center gap-2 rounded-xl px-8 py-4 text-base font-semibold text-white shadow-xl shadow-primary/30 transition-transform hover:scale-[1.03]"
+					>
+						Entrar na lista de espera
+					</a>
+					<a
+						href="/"
+						class="inline-flex items-center justify-center rounded-xl border border-white/20 px-8 py-4 text-base font-semibold text-white transition-colors hover:bg-white/5"
+					>
+						Voltar ao site
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="bg-white py-20 sm:py-24">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="max-w-2xl">
+				<h2 class="text-3xl font-bold tracking-tight text-dark sm:text-4xl">
+					O que estamos construindo
+				</h2>
+				<p class="mt-4 text-lg leading-relaxed text-slate-text">
+					Uma prévia das funcionalidades planejadas para a primeira versão.
+				</p>
+			</div>
+
+			<div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+				{
+					features.map(({ Icon, title, description }) => (
+						<article class="reveal rounded-2xl border border-light bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10">
+							<div class="brand-gradient inline-flex h-11 w-11 items-center justify-center rounded-xl text-white">
+								<Icon class="h-5 w-5" aria-hidden="true" />
+							</div>
+							<h3 class="mt-4 font-semibold text-dark">{title}</h3>
+							<p class="mt-2 text-sm leading-relaxed text-slate-text">{description}</p>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section id="lista-espera" class="bg-light/40 py-20 sm:py-24">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="grid gap-12 lg:grid-cols-5">
+				<div class="lg:col-span-2">
+					<p class="eyebrow brand-gradient-text">Lista de espera</p>
+					<h2 class="mt-4 text-3xl font-bold tracking-tight text-dark">
+						Seja dos primeiros a usar
+					</h2>
+					<p class="mt-4 leading-relaxed text-slate-text">
+						Deixe seu contato e a gente te avisa quando o RP7 Imobiliárias
+						estiver disponível — com acesso antecipado para quem estiver na lista.
+					</p>
+				</div>
+				<div class="lg:col-span-3">
+					<div class="rounded-2xl border border-light bg-white p-6 shadow-lg shadow-dark/5 sm:p-8">
+						<ContactForm
+							client:visible
+							origem="solucoes-imobiliarias"
+							defaultInterest="imobiliarias"
+							submitLabel="Entrar na lista de espera"
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
