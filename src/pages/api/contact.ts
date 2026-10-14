@@ -1,15 +1,12 @@
 import type { APIRoute } from 'astro';
 import { env } from 'cloudflare:workers';
+import { EmailMessage } from 'cloudflare:email';
+import { createMimeMessage, Mailbox } from 'mimetext';
 import { contactSchema } from '../../lib/contactSchema';
 
 export const prerender = false;
 
-function getEnv() {
-	return {
-		url: env.SUPABASE_URL ?? import.meta.env.SUPABASE_URL,
-		key: env.SUPABASE_SERVICE_ROLE_KEY ?? import.meta.env.SUPABASE_SERVICE_ROLE_KEY,
-	};
-}
+const FROM = { name: 'Site RP7 Tech', addr: 'contato@rp7.tech' };
 
 export const POST: APIRoute = async ({ request }) => {
 	let body: unknown;
@@ -27,8 +24,8 @@ export const POST: APIRoute = async ({ request }) => {
 		);
 	}
 
-	const { url, key } = getEnv();
-	if (!url || !key) {
+	const destination = env.LEADS_EMAIL;
+	if (!destination || !env.SEND_EMAIL) {
 		return new Response(
 			JSON.stringify({ error: 'Serviço de contato não configurado' }),
 			{ status: 500 },
@@ -37,28 +34,34 @@ export const POST: APIRoute = async ({ request }) => {
 
 	const { nome, email, telefone, empresa, interesse, mensagem, origem } = parsed.data;
 
-	const res = await fetch(`${url}/rest/v1/leads`, {
-		method: 'POST',
-		headers: {
-			apikey: key,
-			Authorization: `Bearer ${key}`,
-			'Content-Type': 'application/json',
-			Prefer: 'return=minimal',
-		},
-		body: JSON.stringify({
-			nome,
-			email,
-			telefone: telefone || null,
-			empresa: empresa || null,
-			interesse,
-			mensagem,
-			origem: origem || 'site',
-		}),
-	});
+	const text = [
+		`Novo contato pelo site rp7.tech`,
+		``,
+		`Nome: ${nome}`,
+		`E-mail: ${email}`,
+		telefone ? `Telefone: ${telefone}` : null,
+		empresa ? `Empresa: ${empresa}` : null,
+		`Interesse: ${interesse}`,
+		`Origem: ${origem || 'site'}`,
+		``,
+		`Mensagem:`,
+		mensagem,
+	]
+		.filter((line) => line !== null)
+		.join('\n');
 
-	if (!res.ok) {
+	const msg = createMimeMessage();
+	msg.setSender(FROM);
+	msg.setRecipient(destination);
+	msg.setSubject(`[rp7.tech] ${interesse} — ${nome}`);
+	msg.setHeader('Reply-To', new Mailbox({ addr: email, name: nome }));
+	msg.addMessage({ contentType: 'text/plain', charset: 'utf-8', data: text });
+
+	try {
+		await env.SEND_EMAIL.send(new EmailMessage(FROM.addr, destination, msg.asRaw()));
+	} catch {
 		return new Response(
-			JSON.stringify({ error: 'Falha ao registrar contato' }),
+			JSON.stringify({ error: 'Falha ao enviar mensagem' }),
 			{ status: 502 },
 		);
 	}

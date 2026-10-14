@@ -8,7 +8,7 @@ Site institucional da RP7 Tech — [rp7.tech](https://rp7.tech)
 - React (ilha do formulário de contato) + React Hook Form + Zod
 - Tailwind CSS v4
 - Deploy: Cloudflare Workers (static assets + SSR da rota `/api/contact`)
-- Leads gravados no Supabase
+- Formulário de contato envia e-mail via binding `send_email` do Cloudflare
 
 ## Desenvolvimento
 
@@ -29,16 +29,10 @@ Copie `.env.example` para `.env` (dev) e configure no Cloudflare (produção):
 
 | Variável | Uso |
 | :------- | :-- |
-| `SUPABASE_URL` | URL do projeto Supabase |
-| `SUPABASE_SERVICE_ROLE_KEY` | Service role key (server-side apenas, nunca expor no client) |
+| `LEADS_EMAIL` | Destino dos emails do formulário. Deve ser um endereço verificado no Email Routing do Cloudflare |
 | `PUBLIC_WHATSAPP` | Número do WhatsApp só com dígitos (DDI+DDD+número) |
 
-Em produção, configure no dashboard: **Workers → rp7-tech-site → Settings → Variables and Secrets** (`SUPABASE_*` como secrets).
-
-### Supabase
-
-O SQL da tabela `leads` está em `supabase/migrations/0001_create_leads.sql`.
-Execute no SQL Editor do Supabase antes de usar o formulário.
+Em produção, configure no dashboard: **Workers → rp7-tech-site → Settings → Variables and Secrets**.
 
 ## Configuração do site
 

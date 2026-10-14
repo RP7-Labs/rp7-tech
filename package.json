@@ -20,6 +20,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.8",
     "lucide-astro": "^0.556.0",
+    "mimetext": "^3.0.28",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-hook-form": "^7.90.0",
