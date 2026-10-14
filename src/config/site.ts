@@ -12,7 +12,7 @@ export const site = {
 	social: {
 		linkedin: '',
 		instagram: '',
-		github: 'https://github.com/RP7-Labs',
+		github: '',
 	},
 } as const;
 
